@@ -58,7 +58,7 @@ export function Navbar() {
               key={l.href}
               href={l.href}
               className={cn(
-                "relative text-sm font-semibold tracking-wide text-iron/80 transition-colors hover:text-barn",
+                "relative text-sm font-semibold tracking-wide text-iron/80 transition-all hover:text-barn active:scale-95",
                 "after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-barn after:transition-all after:duration-300",
                 pathname === l.href
                   ? "text-barn after:w-full"

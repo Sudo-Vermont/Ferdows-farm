@@ -3,6 +3,7 @@ import { Fraunces, Bitter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { PageTransition } from "@/components/page-transition";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -48,7 +49,9 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${bitter.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </body>
     </html>

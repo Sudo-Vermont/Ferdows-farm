@@ -126,7 +126,7 @@ export default function HomePage() {
               <Link
                 key={a.slug}
                 href="/livestock"
-                className="group relative overflow-hidden rounded-2xl border border-iron/10 bg-sand p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-barn"
+                className="group relative overflow-hidden rounded-2xl border border-iron/10 bg-sand p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-barn/30 hover:shadow-barn active:scale-[0.98] active:duration-75"
               >
                 <div className="absolute -right-6 -top-6 text-8xl opacity-10 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-20">
                   {a.emoji}

@@ -20,11 +20,11 @@ export default function ContactPage() {
             Contact & Order
           </span>
           <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-tight sm:text-6xl text-balance">
-            Come on by, or place your order.
+            Visit us, or book your slaughtering.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-sand/85">
-            The barn doors are open daily. Call ahead and we&apos;ll have your
-            livestock ready, or send us the details below.
+            The barn doors are open daily. To buy meat, products, or eggs, just
+            give us a call — or book an on-site Halal slaughtering below.
           </p>
           <div className="mt-8">
             <Button asChild variant="amber" size="lg">
@@ -44,7 +44,7 @@ export default function ContactPage() {
             <div className="grid gap-4 sm:grid-cols-3">
               <a
                 href={SITE.phoneHref}
-                className="flex flex-col gap-2 rounded-2xl border border-iron/10 bg-card p-5 transition-colors hover:border-barn"
+                className="flex flex-col gap-2 rounded-2xl border border-iron/10 bg-card p-5 transition-all duration-200 hover:-translate-y-1 hover:border-barn hover:shadow-md active:scale-[0.98] active:duration-75"
               >
                 <Phone className="h-5 w-5 text-barn" />
                 <span className="text-xs font-semibold uppercase tracking-wide text-iron/60">
