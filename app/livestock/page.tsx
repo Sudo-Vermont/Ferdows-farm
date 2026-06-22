@@ -23,8 +23,9 @@ function PageHeader() {
           Healthy animals, raised with honest care.
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-sand/80">
-          Choose from pasture-raised sheep, goats, and cattle — every one of them
-          Halal-certified and treated the way livestock deserves to be treated.
+          Choose from pasture-raised sheep, goats, and cattle — plus free-range
+          farm-fresh eggs. Every animal is Halal-certified and treated the way
+          livestock deserves to be treated.
         </p>
       </div>
     </section>

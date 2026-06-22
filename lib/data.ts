@@ -5,6 +5,8 @@ export type Animal = {
   description: string;
   details: string[];
   emoji: string;
+  /** Whether on-site Halal slaughtering can be booked for this product. */
+  bookable: boolean;
 };
 
 export const LIVESTOCK: Animal[] = [
@@ -20,6 +22,7 @@ export const LIVESTOCK: Animal[] = [
       "Raised without growth hormones",
     ],
     emoji: "🐑",
+    bookable: true,
   },
   {
     slug: "goats",
@@ -33,6 +36,7 @@ export const LIVESTOCK: Animal[] = [
       "Selected the morning of pickup",
     ],
     emoji: "🐐",
+    bookable: true,
   },
   {
     slug: "cattle",
@@ -46,6 +50,21 @@ export const LIVESTOCK: Animal[] = [
       "Custom cut to your request",
     ],
     emoji: "🐄",
+    bookable: true,
+  },
+  {
+    slug: "eggs",
+    name: "Farm-Fresh Chicken Eggs",
+    tagline: "Free-range, collected daily",
+    description:
+      "Free-range chicken eggs gathered fresh each morning from hens that roam clean, open pasture. Rich golden yolks you can taste the difference in.",
+    details: [
+      "Free-range, pasture-raised hens",
+      "Collected fresh every morning",
+      "Sold by the dozen — call to reserve",
+    ],
+    emoji: "🥚",
+    bookable: false,
   },
 ];
 

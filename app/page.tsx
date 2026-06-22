@@ -121,7 +121,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2">
             {LIVESTOCK.map((a) => (
               <Link
                 key={a.slug}
