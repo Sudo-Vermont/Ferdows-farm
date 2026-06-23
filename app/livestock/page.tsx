@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, ShieldCheck, Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimalArt } from "@/components/animals";
 import { Reveal } from "@/components/reveal";
 import { SITE } from "@/lib/utils";
 import { LIVESTOCK, HALAL_STANDARDS } from "@/lib/data";
@@ -61,11 +62,11 @@ export default function LivestockPage() {
                 className="grid scroll-mt-28 items-center gap-8 rounded-[2rem] border border-meadow-dark/10 bg-cream p-8 shadow-soft transition-shadow duration-300 hover:shadow-lift sm:p-10 md:grid-cols-[auto_1fr]"
               >
                 <div
-                  className={`grid h-32 w-32 place-items-center rounded-[1.75rem] text-7xl ${
+                  className={`grid h-32 w-32 place-items-center rounded-[1.75rem] ${
                     TILE_BG[i % TILE_BG.length]
                   }`}
                 >
-                  {a.emoji}
+                  <AnimalArt slug={a.slug} className="h-24 w-24" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-clay">

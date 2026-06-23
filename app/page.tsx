@@ -7,8 +7,11 @@ import {
   ArrowRight,
   Phone,
   Sparkles,
+  Wheat,
+  Tractor,
 } from "lucide-react";
 import { HillsHero } from "@/components/hills-hero";
+import { AnimalArt } from "@/components/animals";
 import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/utils";
@@ -127,7 +130,7 @@ export default function HomePage() {
               <div className="absolute -inset-4 -rotate-3 rounded-[2.5rem] bg-wheat/20" />
               <div className="absolute -inset-2 rotate-2 rounded-[2.5rem] bg-meadow/15" />
               <div className="relative overflow-hidden rounded-[2.5rem] bg-meadow-deep p-9 text-cream shadow-lift">
-                <span className="text-6xl">🌾</span>
+                <Wheat className="h-12 w-12 text-wheat-soft" />
                 <p className="mt-4 font-display text-2xl font-bold text-wheat-soft">
                   Our promise to you
                 </p>
@@ -171,11 +174,11 @@ export default function HomePage() {
                   className="group relative flex h-full items-center gap-6 overflow-hidden rounded-[2rem] border border-meadow-dark/10 bg-cream p-6 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift active:scale-[0.99] sm:p-7"
                 >
                   <span
-                    className={`grid h-24 w-24 shrink-0 place-items-center rounded-[1.5rem] text-5xl transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110 ${
+                    className={`grid h-24 w-24 shrink-0 place-items-center rounded-[1.5rem] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110 ${
                       TILE_BG[i % TILE_BG.length]
                     }`}
                   >
-                    {a.emoji}
+                    <AnimalArt slug={a.slug} className="h-16 w-16" />
                   </span>
                   <div>
                     <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-clay">
@@ -205,7 +208,9 @@ export default function HomePage() {
         <div className="absolute -bottom-20 -left-10 h-72 w-72 rounded-full bg-meadow-light/15 blur-3xl" />
         <div className="container relative flex flex-col items-center gap-6 py-24 text-center">
           <Reveal className="flex flex-col items-center gap-6">
-            <span className="text-5xl animate-bob">🚜</span>
+            <span className="grid h-16 w-16 animate-bob place-items-center rounded-full bg-cream/10 text-wheat-soft">
+              <Tractor className="h-8 w-8" />
+            </span>
             <h2 className="max-w-2xl font-display text-4xl font-extrabold leading-tight sm:text-5xl text-balance">
               Ready to place an order or pay us a visit?
             </h2>

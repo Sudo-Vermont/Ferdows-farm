@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Phone, ArrowRight, Sprout } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SheepArt, GoatArt, CowArt } from "@/components/animals";
 import { SITE } from "@/lib/utils";
 
 /** A single swaying wheat stalk. */
@@ -97,23 +98,23 @@ export function HillsHero() {
       <Cloud className="pointer-events-none absolute left-0 top-[8%] -z-10 w-24 animate-drift-slow opacity-60 [animation-delay:-24s] sm:w-32" />
 
       {/* floating farm friends */}
-      <span className="pointer-events-none absolute left-[8%] top-[34%] hidden animate-bob text-5xl drop-shadow-sm md:block">
-        🐑
-      </span>
-      <span className="pointer-events-none absolute right-[9%] top-[28%] hidden animate-bob text-5xl drop-shadow-sm [animation-delay:-2s] md:block">
-        🐐
-      </span>
-      <span className="pointer-events-none absolute right-[16%] top-[46%] hidden animate-bob text-4xl drop-shadow-sm [animation-delay:-3.5s] lg:block">
-        🐄
-      </span>
+      <div className="pointer-events-none absolute left-[7%] top-[32%] hidden animate-bob drop-shadow-md md:block">
+        <SheepArt className="h-20 w-20" />
+      </div>
+      <div className="pointer-events-none absolute right-[8%] top-[26%] hidden animate-bob drop-shadow-md [animation-delay:-2s] md:block">
+        <GoatArt className="h-20 w-20" />
+      </div>
+      <div className="pointer-events-none absolute right-[15%] top-[46%] hidden animate-bob drop-shadow-md [animation-delay:-3.5s] lg:block">
+        <CowArt className="h-16 w-16" />
+      </div>
 
       {/* ── hero content ── */}
       <div
         ref={contentRef}
         className="container relative z-10 flex flex-1 flex-col items-center justify-center pb-40 pt-28 text-center"
       >
-        <span className="animate-fade-up rounded-full border border-meadow-dark/20 bg-cream/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-meadow-dark backdrop-blur-sm [animation-delay:0.1s]">
-          🌿 Halal Certified · Huntley, Illinois
+        <span className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-meadow-dark/20 bg-cream/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-meadow-dark backdrop-blur-sm [animation-delay:0.1s]">
+          <Sprout className="h-3.5 w-3.5" /> Halal Certified · Huntley, Illinois
         </span>
 
         <h1 className="mt-6 max-w-4xl font-display text-5xl font-extrabold leading-[0.98] text-meadow-deep sm:text-7xl lg:text-[5.5rem]">
