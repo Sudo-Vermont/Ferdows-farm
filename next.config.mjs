@@ -12,6 +12,8 @@ const nextConfig = {
   images: { unoptimized: true }, // no Image Optimization server on Pages
   basePath: isGithubPages ? `/${repo}` : "",
   assetPrefix: isGithubPages ? `/${repo}/` : "",
+  // Exposed to the client so plain <img> src can be prefixed with the base path.
+  env: { NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repo}` : "" },
 };
 
 export default nextConfig;

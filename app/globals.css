@@ -132,6 +132,15 @@
     100% { background-position: 200% center; }
   }
 
+  /* ── Ken Burns slow zoom (hero photo) ── */
+  .animate-kenburns {
+    animation: kenburns 24s ease-out both;
+  }
+  @keyframes kenburns {
+    0% { transform: scale(1.06); }
+    100% { transform: scale(1.16); }
+  }
+
   /* ── Marquee ── */
   .marquee-track {
     display: flex;
@@ -153,7 +162,8 @@
     .reveal { opacity: 1 !important; transform: none !important; }
     .animate-page-in, .animate-pop, .blade, .text-sunrise,
     .marquee-track, .animate-bob, .animate-sway, .animate-drift-slow,
-    .animate-drift-med, .animate-rise-sun, .animate-spin-slow {
+    .animate-drift-med, .animate-rise-sun, .animate-spin-slow,
+    .animate-kenburns {
       animation: none !important;
     }
   }

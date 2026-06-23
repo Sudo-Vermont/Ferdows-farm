@@ -11,10 +11,9 @@ import {
   Tractor,
 } from "lucide-react";
 import { HillsHero } from "@/components/hills-hero";
-import { AnimalArt } from "@/components/animals";
 import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/lib/utils";
+import { SITE, asset } from "@/lib/utils";
 import { LIVESTOCK } from "@/lib/data";
 
 const TRUST = [
@@ -49,8 +48,6 @@ const MARQUEE = [
   "Farm Fresh",
   "Ethically Raised",
 ];
-
-const TILE_BG = ["bg-meadow/12", "bg-wheat/15", "bg-clay/12", "bg-meadow-light/20"];
 
 export default function HomePage() {
   return (
@@ -173,12 +170,13 @@ export default function HomePage() {
                   href="/livestock"
                   className="group relative flex h-full items-center gap-6 overflow-hidden rounded-[2rem] border border-meadow-dark/10 bg-cream p-6 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift active:scale-[0.99] sm:p-7"
                 >
-                  <span
-                    className={`grid h-24 w-24 shrink-0 place-items-center rounded-[1.5rem] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110 ${
-                      TILE_BG[i % TILE_BG.length]
-                    }`}
-                  >
-                    <AnimalArt slug={a.slug} className="h-16 w-16" />
+                  <span className="relative h-24 w-24 shrink-0 overflow-hidden rounded-[1.5rem] ring-1 ring-meadow-dark/10">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset(a.image)}
+                      alt={a.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                   </span>
                   <div>
                     <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-clay">

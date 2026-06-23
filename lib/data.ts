@@ -5,6 +5,8 @@ export type Animal = {
   description: string;
   details: string[];
   emoji: string;
+  /** Photo in /public/images used on cards and detail tiles. */
+  image: string;
   /** Whether on-site Halal slaughtering can be booked for this product. */
   bookable: boolean;
 };
@@ -22,6 +24,7 @@ export const LIVESTOCK: Animal[] = [
       "Raised without growth hormones",
     ],
     emoji: "🐑",
+    image: "/images/sheep.jpg",
     bookable: true,
   },
   {
@@ -36,6 +39,7 @@ export const LIVESTOCK: Animal[] = [
       "Selected the morning of pickup",
     ],
     emoji: "🐐",
+    image: "/images/goat.jpg",
     bookable: true,
   },
   {
@@ -50,6 +54,7 @@ export const LIVESTOCK: Animal[] = [
       "Custom cut to your request",
     ],
     emoji: "🐄",
+    image: "/images/cow.jpg",
     bookable: true,
   },
   {
@@ -64,6 +69,7 @@ export const LIVESTOCK: Animal[] = [
       "Sold by the dozen — call to reserve",
     ],
     emoji: "🥚",
+    image: "/images/hen.jpg",
     bookable: false,
   },
 ];

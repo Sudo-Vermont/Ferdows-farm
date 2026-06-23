@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, ShieldCheck, Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimalArt } from "@/components/animals";
 import { Reveal } from "@/components/reveal";
-import { SITE } from "@/lib/utils";
+import { SITE, asset } from "@/lib/utils";
 import { LIVESTOCK, HALAL_STANDARDS } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
   description:
     "Halal-certified sheep, goats, and cattle raised ethically on pasture in Huntley, IL. See our strict Halal process and animal-care standards.",
 };
-
-const TILE_BG = ["bg-meadow/12", "bg-wheat/15", "bg-clay/12", "bg-meadow-light/20"];
 
 function PageHeader() {
   return (
@@ -61,12 +58,13 @@ export default function LivestockPage() {
                 id={a.slug}
                 className="grid scroll-mt-28 items-center gap-8 rounded-[2rem] border border-meadow-dark/10 bg-cream p-8 shadow-soft transition-shadow duration-300 hover:shadow-lift sm:p-10 md:grid-cols-[auto_1fr]"
               >
-                <div
-                  className={`grid h-32 w-32 place-items-center rounded-[1.75rem] ${
-                    TILE_BG[i % TILE_BG.length]
-                  }`}
-                >
-                  <AnimalArt slug={a.slug} className="h-24 w-24" />
+                <div className="h-40 w-full overflow-hidden rounded-[1.75rem] ring-1 ring-meadow-dark/10 md:h-36 md:w-44">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={asset(a.image)}
+                    alt={a.name}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-clay">
