@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CheckCircle2,
   Loader2,
@@ -25,10 +25,35 @@ const BOOKING_OPTIONS = LIVESTOCK.filter((a) => a.bookable);
 // them to the address below. (No server/backend — required for GitHub Pages.)
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/alkhatib.f12@gmail.com";
 
+// How far out a slaughtering can be booked (no past dates, max 1 week ahead).
+const BOOKING_WINDOW_DAYS = 7;
+
+// Format a Date as a local YYYY-MM-DD string (matches <input type="date">).
+function toDateInput(d: Date) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
 export function OrderForm() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  // Computed on the client so the bounds reflect the visitor's actual "today"
+  // (avoids a build-time date being baked into the static export).
+  const [dateRange, setDateRange] = useState<{ min: string; max: string }>({
+    min: "",
+    max: "",
+  });
+
+  useEffect(() => {
+    const today = new Date();
+    const latest = new Date();
+    latest.setDate(latest.getDate() + BOOKING_WINDOW_DAYS);
+    setDateRange({ min: toDateInput(today), max: toDateInput(latest) });
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -41,6 +66,17 @@ export function OrderForm() {
       return;
     }
 
+    // Guard the booking window in case the native min/max is bypassed.
+    const dateVal = String(data.get("date") || "");
+    if (dateRange.min && (dateVal < dateRange.min || dateVal > dateRange.max)) {
+      setErrorMsg(
+        `Please choose a date between today and ${dateRange.max} — bookings open up to ${BOOKING_WINDOW_DAYS} days ahead.`
+      );
+      setStatus("error");
+      return;
+    }
+
+    setErrorMsg(null);
     setStatus("sending");
     const payload = {
       _subject: "New on-site slaughtering booking — Ferdows Farm",
@@ -228,8 +264,13 @@ export function OrderForm() {
             name="date"
             type="date"
             required
+            min={dateRange.min}
+            max={dateRange.max}
             className={fieldClass}
           />
+          <p className="mt-1 text-xs text-ink-muted">
+            Within the next {BOOKING_WINDOW_DAYS} days.
+          </p>
         </div>
         <div>
           <label htmlFor="time" className={labelClass}>
@@ -287,11 +328,17 @@ export function OrderForm() {
       {status === "error" && (
         <p className="animate-pop mt-5 flex items-start gap-2 rounded-2xl border-2 border-clay/30 bg-clay/5 p-3 text-sm text-clay-deep">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
-          Something went wrong sending your request. Please try again, or{" "}
-          <a href={SITE.phoneHref} className="font-semibold underline">
-            call us at {SITE.phone}
-          </a>
-          .
+          {errorMsg ? (
+            <span>{errorMsg}</span>
+          ) : (
+            <span>
+              Something went wrong sending your request. Please try again, or{" "}
+              <a href={SITE.phoneHref} className="font-semibold underline">
+                call us at {SITE.phone}
+              </a>
+              .
+            </span>
+          )}
         </p>
       )}
 
