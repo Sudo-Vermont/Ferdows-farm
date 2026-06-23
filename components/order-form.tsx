@@ -8,6 +8,7 @@ import {
   CalendarDays,
   ShieldCheck,
   Phone,
+  AlertCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LIVESTOCK } from "@/lib/data";
@@ -20,14 +21,61 @@ const labelClass = "mb-1.5 block text-sm font-semibold text-iron";
 // Only animals flagged bookable can be reserved for on-site Halal slaughtering.
 const BOOKING_OPTIONS = LIVESTOCK.filter((a) => a.bookable);
 
-export function OrderForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+// Static-site form delivery: submissions are POSTed to Formsubmit, which emails
+// them to the address below. (No server/backend — required for GitHub Pages.)
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/alkhatib.f12@gmail.com";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+export function OrderForm() {
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    // Honeypot — if a bot filled the hidden field, silently pretend success.
+    if (data.get("_honey")) {
+      setStatus("sent");
+      return;
+    }
+
     setStatus("sending");
-    // No backend wired up yet — simulate a submission and confirm to the user.
-    setTimeout(() => setStatus("sent"), 900);
+    const payload = {
+      _subject: "New on-site slaughtering booking — Ferdows Farm",
+      _template: "table",
+      _captcha: "false",
+      Name: data.get("name"),
+      Phone: data.get("phone"),
+      Email: data.get("email") || "—",
+      Animal: data.get("animal"),
+      "Number of animals": data.get("head"),
+      "Preferred date": data.get("date"),
+      "Preferred time": data.get("time") || "—",
+      "Cut & processing preferences": data.get("message") || "—",
+      "Halal Standards acknowledged": data.get("halalAck") ? "Yes" : "No",
+    };
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && String(json.success) === "true") {
+        form.reset();
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   if (status === "sent") {
@@ -63,6 +111,15 @@ export function OrderForm() {
       onSubmit={handleSubmit}
       className="rounded-2xl border border-iron/10 bg-card p-7 shadow-sm transition-shadow duration-300 hover:shadow-barn sm:p-8"
     >
+      {/* honeypot: hidden from real users, catches bots */}
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
       <span className="inline-flex items-center gap-2 rounded-full bg-barn/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-barn">
         <CalendarDays className="h-3.5 w-3.5" /> On-Site Halal Booking
       </span>
@@ -223,6 +280,17 @@ export function OrderForm() {
           </label>
         </div>
       </div>
+
+      {status === "error" && (
+        <p className="animate-pop mt-5 flex items-start gap-2 rounded-lg border-2 border-barn/30 bg-barn/5 p-3 text-sm text-barn">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          Something went wrong sending your request. Please try again, or{" "}
+          <a href={SITE.phoneHref} className="font-semibold underline">
+            call us at {SITE.phone}
+          </a>
+          .
+        </p>
+      )}
 
       <Button
         type="submit"
