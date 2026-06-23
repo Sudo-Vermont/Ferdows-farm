@@ -4,30 +4,30 @@
 
 @layer base {
   :root {
-    /* shadcn tokens mapped to the farm palette (HSL) */
-    --background: 40 44% 89%; /* sandy beige */
-    --foreground: 26 16% 10%; /* weathered iron */
+    /* shadcn tokens mapped to the Fresh Pasture palette (HSL) */
+    --background: 42 56% 96%; /* bone */
+    --foreground: 100 9% 16%; /* ink */
 
-    --card: 40 44% 92%;
-    --card-foreground: 26 16% 10%;
+    --card: 45 100% 99%; /* cream */
+    --card-foreground: 100 9% 16%;
 
-    --primary: 6 56% 31%; /* barn red */
-    --primary-foreground: 40 44% 94%;
+    --primary: 105 22% 46%; /* meadow */
+    --primary-foreground: 45 100% 99%;
 
-    --secondary: 150 25% 23%; /* forest green */
-    --secondary-foreground: 40 44% 94%;
+    --secondary: 130 19% 30%; /* meadow dark */
+    --secondary-foreground: 45 100% 99%;
 
-    --muted: 38 30% 80%;
-    --muted-foreground: 28 14% 32%;
+    --muted: 42 40% 88%;
+    --muted-foreground: 100 6% 40%;
 
-    --accent: 35 76% 60%; /* edison amber */
-    --accent-foreground: 26 30% 12%;
+    --accent: 37 72% 55%; /* wheat */
+    --accent-foreground: 100 12% 14%;
 
-    --border: 34 24% 72%;
-    --input: 34 24% 72%;
-    --ring: 6 56% 31%;
+    --border: 95 16% 82%;
+    --input: 95 16% 82%;
+    --ring: 105 22% 46%;
 
-    --radius: 0.35rem;
+    --radius: 1.25rem;
   }
 
   * {
@@ -40,14 +40,22 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    /* faint paper / canvas grain */
+    /* warm sunrise atmosphere + faint pasture mesh */
     background-image:
-      radial-gradient(circle at 12% 18%, rgba(124, 45, 35, 0.05), transparent 42%),
-      radial-gradient(circle at 88% 82%, rgba(44, 74, 59, 0.06), transparent 45%);
+      radial-gradient(70% 50% at 80% -8%, rgba(251, 217, 166, 0.6), transparent 60%),
+      radial-gradient(60% 45% at 5% 0%, rgba(201, 216, 190, 0.5), transparent 55%),
+      radial-gradient(50% 40% at 100% 100%, rgba(143, 176, 126, 0.18), transparent 60%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
     @apply font-display;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: #6b8f5e;
+    color: #fffdf8;
   }
 }
 
@@ -56,211 +64,96 @@
     text-wrap: balance;
   }
 
-  /* ----------------------------------------------------------------
-     PAGE / CLICK ANIMATIONS
-  ---------------------------------------------------------------- */
+  /* ── Grain overlay for organic texture ── */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
 
-  /* Whole-page entrance, re-keyed on every route change for redirects */
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Page transition ── */
   .animate-page-in {
-    animation: page-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: page-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   @keyframes page-in {
-    0% { opacity: 0; transform: translateY(14px); }
+    0% { opacity: 0; transform: translateY(12px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* Confirmation / success pop */
   .animate-pop {
-    animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation: pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
   @keyframes pop {
-    0% { opacity: 0; transform: scale(0.85); }
+    0% { opacity: 0; transform: scale(0.82); }
     100% { opacity: 1; transform: scale(1); }
   }
 
-  /* Tactile press for clickable things */
-  .tap {
-    transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* ── Wheat / grass blade (animated) ── */
+  .blade {
+    transform-origin: bottom center;
+    animation: blade-sway 4s ease-in-out infinite;
   }
-  .tap:active {
-    transform: scale(0.96);
-  }
-
-  /* Material-style click ripple (driven by .ripple-go toggle in JS) */
-  .ripple {
-    position: relative;
-    overflow: hidden;
-  }
-  .ripple::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 12px;
-    height: 12px;
-    border-radius: 9999px;
-    background: currentColor;
-    opacity: 0;
-    transform: scale(1);
-    pointer-events: none;
-  }
-  .ripple.ripple-go::after {
-    animation: ripple 0.6s ease-out;
-  }
-  @keyframes ripple {
-    0% { opacity: 0.32; transform: scale(1); }
-    100% { opacity: 0; transform: scale(34); }
+  @keyframes blade-sway {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
   }
 
-  /* ----------------------------------------------------------------
-     WOOD + BARN TEXTURES (high detail)
-  ---------------------------------------------------------------- */
-
-  /* Fractal-noise grain overlay — gives wood real texture, not flat fill */
-  .wood-grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014 0.22' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 220px 220px;
-    mix-blend-mode: overlay;
-    opacity: 0.5;
+  /* ── Animated gradient text (sunrise sheen) ── */
+  .text-sunrise {
+    background: linear-gradient(100deg, #c9852a, #e0a23b, #f2c879, #c96a3f, #e0a23b);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
   }
 
-  /* Vertical wood-plank texture for the barn doors */
-  .wood-planks {
-    background-color: #5a3620;
-    background-image:
-      /* deep seams between planks */
-      repeating-linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.55) 0px,
-        rgba(0, 0, 0, 0.0) 2px,
-        rgba(0, 0, 0, 0.0) 14.6%,
-        rgba(255, 255, 255, 0.05) 14.9%,
-        rgba(0, 0, 0, 0.55) 15.2%
-      ),
-      /* plank-to-plank tonal variation */
-      repeating-linear-gradient(
-        90deg,
-        #74471f 0%,
-        #5f3a1c 6%,
-        #835530 11%,
-        #5a3620 14.6%
-      ),
-      /* top-down light fall */
-      linear-gradient(180deg, rgba(255, 220, 170, 0.1), rgba(0, 0, 0, 0.28));
-    background-blend-mode: multiply, normal, overlay;
+  /* ── Marquee ── */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  /* Horizontal weathered board (for Z-frame braces, trim, beams) */
-  .wood-board {
-    background-color: #6b421f;
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.16) 0px,
-        rgba(0, 0, 0, 0.16) 1px,
-        transparent 1px,
-        transparent 5px
-      ),
-      linear-gradient(90deg, #7a4d26, #5e3819 45%, #82532c 75%, #5a3620);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 220, 170, 0.18),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.4),
-      0 3px 6px rgba(0, 0, 0, 0.45);
+  /* ── Dotted/curved section dividers ── */
+  .edge-top-fade {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%);
+    mask-image: linear-gradient(to bottom, transparent, #000 14%);
   }
 
-  /* Roof made of shingle rows + sheen */
-  .barn-roof {
-    background-color: #6a241c;
-    background-image:
-      repeating-linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.32) 0px,
-        rgba(0, 0, 0, 0.32) 1px,
-        transparent 1px,
-        transparent 12px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.18) 0px,
-        rgba(0, 0, 0, 0.18) 1px,
-        transparent 1px,
-        transparent 26px
-      ),
-      linear-gradient(180deg, #94372a 0%, #7c2d23 40%, #5e2019 100%);
-  }
-
-  /* Warm, lit barn interior revealed behind the doors */
-  .barn-interior {
-    background:
-      radial-gradient(120% 90% at 50% 16%, rgba(248, 214, 150, 0.6) 0%, rgba(232, 168, 76, 0.2) 32%, transparent 64%),
-      radial-gradient(80% 60% at 50% 108%, rgba(180, 130, 70, 0.5), transparent 70%),
-      linear-gradient(180deg, #2a1c12 0%, #3c2716 55%, #1a110a 100%);
-  }
-
-  /* Back wall of the interior — horizontal planks receding in light */
-  .barn-backwall {
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.35) 0px,
-        rgba(0, 0, 0, 0.35) 1px,
-        transparent 1px,
-        transparent 26px
-      ),
-      linear-gradient(180deg, rgba(120, 80, 40, 0.5), rgba(40, 26, 16, 0.2));
-  }
-
-  /* Straw / hay along the floor */
-  .straw-floor {
-    background:
-      repeating-linear-gradient(
-        82deg,
-        rgba(232, 188, 104, 0.6) 0px,
-        rgba(232, 188, 104, 0.6) 2px,
-        transparent 2px,
-        transparent 6px
-      ),
-      repeating-linear-gradient(
-        98deg,
-        rgba(196, 150, 74, 0.5) 0px,
-        rgba(196, 150, 74, 0.5) 2px,
-        transparent 2px,
-        transparent 7px
-      ),
-      linear-gradient(0deg, #6b4a22, transparent);
-  }
-
-  /* Iron hardware: straps, hinges, ring plates */
-  .iron-strap {
-    background:
-      linear-gradient(180deg, #3a342c 0%, #1c1812 50%, #2a241d 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.16),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.6),
-      0 2px 5px rgba(0, 0, 0, 0.55);
-  }
-  /* A forged bolt/rivet head */
-  .iron-bolt {
-    background: radial-gradient(circle at 35% 30%, #5a5249, #1a1611 70%);
-    box-shadow:
-      inset 0 1px 1px rgba(255, 255, 255, 0.25),
-      0 1px 2px rgba(0, 0, 0, 0.6);
-  }
-
-  /* glow halo behind edison bulbs */
-  .bulb-glow {
-    background: radial-gradient(circle, rgba(248, 214, 150, 0.55) 0%, transparent 70%);
-  }
-
-  /* respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .animate-page-in,
-    .animate-pop,
-    .motion-door {
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .animate-page-in, .animate-pop, .blade, .text-sunrise,
+    .marquee-track, .animate-bob, .animate-sway, .animate-drift-slow,
+    .animate-drift-med, .animate-rise-sun, .animate-spin-slow {
       animation: none !important;
     }
   }

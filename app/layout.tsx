@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Fraunces, Bitter } from "next/font/google";
+import { Bricolage_Grotesque, Mulish } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/page-transition";
 
-const fraunces = Fraunces({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
-  axes: ["opsz", "SOFT", "WONK"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const bitter = Bitter({
+const body = Mulish({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
@@ -46,7 +46,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${bitter.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Navbar />
         <main className="flex-1">

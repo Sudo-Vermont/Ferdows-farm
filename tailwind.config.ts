@@ -2,48 +2,32 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
       padding: "1.25rem",
-      screens: { "2xl": "1280px" },
+      screens: { "2xl": "1240px" },
     },
     extend: {
       colors: {
-        // Ferdows Farm palette
-        barn: {
-          DEFAULT: "#7C2D23",
-          dark: "#5E2019",
-          light: "#9A3A2C",
+        // ── Fresh Pasture palette ──────────────────────────────
+        bone: { DEFAULT: "#FBF7EF", dark: "#F1E9D8", deep: "#E7DCC4" },
+        cream: "#FFFDF8",
+        meadow: {
+          DEFAULT: "#6B8F5E",
+          mid: "#557049",
+          dark: "#3D5A40",
+          deep: "#2E4631",
+          light: "#8FB07E",
+          mist: "#C9D8BE",
         },
-        forest: {
-          DEFAULT: "#2C4A3B",
-          dark: "#1E3329",
-          light: "#3C6350",
-        },
-        sand: {
-          DEFAULT: "#F2E8D5",
-          dark: "#E5D6BB",
-          deep: "#D8C49E",
-        },
-        iron: {
-          DEFAULT: "#1E1A16",
-          light: "#3A332B",
-        },
-        amber: {
-          glow: "#E8A84C",
-          soft: "#F4CB86",
-        },
-        wood: {
-          DEFAULT: "#6B4226",
-          dark: "#4A2D18",
-          light: "#8A5A33",
-        },
-        // shadcn tokens
+        wheat: { DEFAULT: "#E0A23B", soft: "#F2C879", deep: "#C9852A" },
+        clay: { DEFAULT: "#C96A3F", light: "#DB8B63", deep: "#A8522D" },
+        ink: { DEFAULT: "#2A2E27", soft: "#4A4F44", muted: "#6B7163" },
+        sky: { DEFAULT: "#FCEAC9", light: "#FFF6E6", warm: "#FBD9A6" },
+
+        // ── shadcn tokens ──────────────────────────────────────
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -72,47 +56,72 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],
-        body: ["var(--font-body)", "Georgia", "serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
+        blob: "42% 58% 63% 37% / 41% 44% 56% 59%",
       },
       boxShadow: {
-        barn: "0 30px 60px -15px rgba(20,15,10,0.55)",
-        glow: "0 0 40px 8px rgba(232,168,76,0.45)",
+        soft: "0 10px 30px -12px rgba(46,70,49,0.22)",
+        lift: "0 26px 50px -18px rgba(46,70,49,0.34)",
+        glow: "0 0 60px 10px rgba(242,200,121,0.55)",
+        ring: "0 0 0 1px rgba(46,70,49,0.08)",
       },
       keyframes: {
-        "door-left": {
-          "0%": { transform: "rotateY(0deg)" },
-          "100%": { transform: "rotateY(-108deg)" },
+        "rise-sun": {
+          "0%": { transform: "translateY(60%) scale(0.85)", opacity: "0" },
+          "100%": { transform: "translateY(0) scale(1)", opacity: "1" },
         },
-        "door-right": {
-          "0%": { transform: "rotateY(0deg)" },
-          "100%": { transform: "rotateY(108deg)" },
-        },
-        flicker: {
-          "0%, 100%": { opacity: "1", filter: "brightness(1)" },
-          "45%": { opacity: "0.92", filter: "brightness(1.08)" },
-          "55%": { opacity: "0.85", filter: "brightness(0.95)" },
-          "70%": { opacity: "1", filter: "brightness(1.05)" },
-        },
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        drift: {
+          "0%": { transform: "translateX(-12%)" },
+          "100%": { transform: "translateX(112%)" },
         },
         sway: {
-          "0%, 100%": { transform: "rotate(-2deg)" },
-          "50%": { transform: "rotate(2deg)" },
+          "0%, 100%": { transform: "rotate(-3.5deg)" },
+          "50%": { transform: "rotate(3.5deg)" },
+        },
+        bob: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(26px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "grow-y": {
+          "0%": { transform: "scaleY(0)" },
+          "100%": { transform: "scaleY(1)" },
         },
       },
       animation: {
-        "door-left": "door-left 2.1s cubic-bezier(0.22,1,0.36,1) 0.45s forwards",
-        "door-right": "door-right 2.1s cubic-bezier(0.22,1,0.36,1) 0.45s forwards",
-        flicker: "flicker 5s ease-in-out infinite",
-        "fade-up": "fade-up 0.9s ease-out forwards",
-        sway: "sway 6s ease-in-out infinite",
+        "rise-sun": "rise-sun 1.8s cubic-bezier(0.16,1,0.3,1) both",
+        "drift-slow": "drift 38s linear infinite",
+        "drift-med": "drift 26s linear infinite",
+        sway: "sway 5.5s ease-in-out infinite",
+        bob: "bob 4.5s ease-in-out infinite",
+        "fade-up": "fade-up 0.9s cubic-bezier(0.16,1,0.3,1) both",
+        "fade-in": "fade-in 1.2s ease-out both",
+        marquee: "marquee 28s linear infinite",
+        "spin-slow": "spin-slow 28s linear infinite",
       },
     },
   },

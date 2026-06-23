@@ -4,25 +4,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold tracking-wide ring-offset-background transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] active:duration-75 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:transition-transform",
+  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full font-semibold tracking-tight ring-offset-background transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] active:duration-75 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:transition-transform",
   {
     variants: {
       variant: {
         default:
-          "bg-barn text-sand shadow-md hover:bg-barn-dark hover:shadow-lg active:translate-y-px",
-        forest:
-          "bg-forest text-sand shadow-md hover:bg-forest-dark hover:shadow-lg active:translate-y-px",
-        amber:
-          "bg-amber-glow text-iron shadow-md hover:bg-amber-soft hover:shadow-glow active:translate-y-px",
+          "bg-meadow text-cream shadow-soft hover:bg-meadow-mid hover:shadow-lift",
+        leaf: "bg-meadow-dark text-cream shadow-soft hover:bg-meadow-deep hover:shadow-lift",
+        wheat:
+          "bg-wheat text-ink shadow-soft hover:bg-wheat-soft hover:shadow-glow",
+        clay: "bg-clay text-cream shadow-soft hover:bg-clay-deep hover:shadow-lift",
         outline:
-          "border-2 border-iron/70 bg-transparent text-iron hover:bg-iron hover:text-sand",
-        ghost: "hover:bg-sand-dark/60 text-iron",
-        link: "text-barn underline-offset-4 hover:underline",
+          "border-2 border-meadow-dark/30 bg-transparent text-meadow-dark hover:border-meadow-dark hover:bg-meadow-dark hover:text-cream",
+        ghost: "text-ink hover:bg-meadow-mist/50",
+        link: "text-meadow-dark underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-11 px-6 py-2",
-        sm: "h-9 px-4",
-        lg: "h-13 px-8 py-3 text-base",
+        default: "h-11 px-6 text-sm",
+        sm: "h-9 px-5 text-sm",
+        lg: "h-14 px-8 text-base",
         icon: "h-11 w-11",
       },
     },
