@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
   Leaf,
   Package,
-  Award,
+  Moon,
   ArrowRight,
   Phone,
   Quote,
@@ -14,32 +14,18 @@ import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { SITE, asset } from "@/lib/utils";
 import { LIVESTOCK, HALAL_STANDARDS } from "@/lib/data";
-import {
-  Drumstick,
-  Steak,
-  Ribs,
-  Sausage,
-  Cleaver,
-  WaxStamp,
-} from "@/components/meat-sketches";
+import { Cleaver, WaxStamp } from "@/components/meat-sketches";
 
 const FEATURES = [
   { Comp: Leaf, label: "Only Organic Nutrition" },
   { Comp: Package, label: "Vacuum-Sealed Packaging" },
-  { Comp: Award, label: "Halal Quality Certified" },
+  { Comp: Moon, label: "Done the Halal Way" },
   { Comp: Cleaver, label: "Professional Halal Cutting" },
-];
-
-const PRODUCTION = [
-  { Comp: Drumstick, label: "Chicken" },
-  { Comp: Steak, label: "Beef Steak" },
-  { Comp: Ribs, label: "Lamb Ribs" },
-  { Comp: Sausage, label: "Sausage" },
 ];
 
 const MARQUEE = [
   "Grass-Fed",
-  "Halal Certified",
+  "100% Halal",
   "Pasture Raised",
   "Hand-Cut",
   "No Hormones",
@@ -89,37 +75,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── PRODUCTION (sketch chart) ── */}
-      <section className="relative bg-coal">
-        <div className="container py-24">
-          <Reveal className="text-center">
-            <p className="font-script text-3xl text-blood-soft">from our pasture</p>
-            <h2 className="mt-1 font-display text-4xl font-bold uppercase tracking-tight text-bone sm:text-5xl">
-              Raised by a leading farm,
-              <br />
-              <span className="text-blood-soft">cut to your order</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-bone-muted">
-              Every animal is pasture-raised and processed to strict Halal
-              standards by trained hands — from whole shares to your favorite cuts.
-            </p>
-          </Reveal>
-
-          <div className="mt-16 grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {PRODUCTION.map(({ Comp, label }, i) => (
-              <Reveal key={label} delay={i * 90}>
-                <div className="group flex flex-col items-center gap-5 rounded-lg border border-coal-line bg-coal-card/40 px-4 py-9 text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-blood/40 hover:bg-coal-card">
-                  <Comp className="h-24 w-24 text-bone-soft transition-colors duration-300 group-hover:text-blood-soft" />
-                  <span className="font-display text-lg font-semibold uppercase tracking-[0.12em] text-bone">
-                    {label}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── FRESH SHOWCASE ── */}
       <section className="bg-coal-soft">
         <div className="container grid items-stretch gap-6 py-6 lg:grid-cols-2">
@@ -161,8 +116,8 @@ export default function HomePage() {
               <div className="flex flex-col justify-center rounded-lg bg-blood p-8 text-bone">
                 <span className="font-poster text-6xl leading-none">100%</span>
                 <span className="mt-3 text-sm leading-relaxed text-bone/85">
-                  Halal-certified processing — strict standards, no exceptions,
-                  every single time.
+                  Slaughtered the traditional Halal way — strict standards, no
+                  shortcuts, every single time.
                 </span>
               </div>
               <div className="relative overflow-hidden rounded-lg">

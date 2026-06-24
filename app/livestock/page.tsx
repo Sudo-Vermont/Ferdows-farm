@@ -9,7 +9,7 @@ import { LIVESTOCK, HALAL_STANDARDS } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Livestock & Halal Standards",
   description:
-    "Halal-certified sheep, goats, and cattle raised ethically on pasture in Huntley, IL. See our strict Halal process and animal-care standards.",
+    "Halal sheep, goats, and cattle raised ethically on pasture in Huntley, IL, and slaughtered the traditional Halal way. See our Halal process and animal-care standards.",
 };
 
 function PageHeader() {
@@ -26,8 +26,8 @@ function PageHeader() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-bone-muted">
             Choose from pasture-raised sheep, goats, and cattle — plus free-range
-            farm-fresh eggs. Every animal is Halal-certified and treated the way
-            livestock deserves.
+            farm-fresh eggs. Every animal is raised and slaughtered the Halal way,
+            and treated the way livestock deserves.
           </p>
         </Reveal>
       </div>
@@ -97,7 +97,7 @@ export default function LivestockPage() {
               <ShieldCheck className="h-4 w-4" /> Our Standards
             </span>
             <h2 className="mt-5 max-w-2xl font-display text-4xl font-bold uppercase tracking-tight text-bone sm:text-5xl">
-              Strict Halal certification,{" "}
+              The Halal way,{" "}
               <span className="text-blood-soft">no exceptions</span>
             </h2>
             <p className="mt-4 max-w-2xl text-bone-muted">

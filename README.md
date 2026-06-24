@@ -1,6 +1,6 @@
 # Ferdows Farm
 
-Marketing site for **Ferdows Farm** — Halal-certified sheep, goats, and cattle in Huntley, IL.
+Marketing site for **Ferdows Farm** — Halal sheep, goats, and cattle in Huntley, IL, raised and slaughtered the traditional Halal way.
 
 Built with **Next.js 14 (App Router)**, **Tailwind CSS**, and **shadcn-style** components.
 

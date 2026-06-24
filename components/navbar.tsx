@@ -39,7 +39,7 @@ export function Navbar() {
           <span className="flex items-center gap-2">
             <Clock className="h-3.5 w-3.5 text-blood-soft" /> Open Daily · 8 AM – 6 PM
             <span className="mx-2 text-bone/20">|</span>
-            <span className="eyebrow text-[0.65rem] text-gold">Halal Certified</span>
+            <span className="eyebrow text-[0.65rem] text-gold">Done the Halal Way</span>
           </span>
         </div>
       </div>

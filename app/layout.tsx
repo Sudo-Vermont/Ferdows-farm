@@ -34,11 +34,11 @@ const body = Hanken_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ferdows Farm — Halal-Certified Sheep, Goats & Cattle | Huntley, IL",
+    default: "Ferdows Farm — Halal Sheep, Goats & Cattle | Huntley, IL",
     template: "%s | Ferdows Farm",
   },
   description:
-    "Ferdows Farm in Huntley, IL provides Halal-certified, ethically raised sheep, goats, and cattle. Farm-to-table livestock you can trust. Call (702) 354-7434.",
+    "Ferdows Farm in Huntley, IL raises ethical, pasture-fed sheep, goats, and cattle, slaughtered the traditional Halal way. Farm-to-table livestock you can trust. Call (702) 354-7434.",
   keywords: [
     "Halal livestock",
     "Halal sheep",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     "Ferdows Farm",
   ],
   openGraph: {
-    title: "Ferdows Farm — Halal-Certified Livestock",
+    title: "Ferdows Farm — Halal Livestock",
     description:
-      "Ethically raised, Halal-certified sheep, goats, and cattle in Huntley, IL.",
+      "Ethically raised sheep, goats, and cattle, slaughtered the Halal way, in Huntley, IL.",
     type: "website",
   },
 };

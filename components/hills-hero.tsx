@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { Phone, ArrowRight, Award } from "lucide-react";
+import { Phone, ArrowRight, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/utils";
 import { Herb, Cleaver } from "@/components/meat-sketches";
@@ -53,7 +53,7 @@ export function HillsHero() {
         className="container relative z-10 flex flex-col items-center py-28 text-center"
       >
         <span className="inline-flex animate-fade-up items-center gap-2 rounded-sm border border-bone/15 bg-coal/40 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-bone-soft backdrop-blur-sm">
-          <Award className="h-3.5 w-3.5 text-gold" /> Halal Certified · Pasture-Raised
+          <Moon className="h-3.5 w-3.5 text-gold" /> Done the Halal Way · Pasture-Raised
         </span>
 
         <h1 className="mt-7 font-poster leading-[0.82] text-bone">

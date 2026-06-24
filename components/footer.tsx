@@ -20,8 +20,9 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed">
-            Halal-certified, ethically raised sheep, goats, and cattle. Pasture-fed,
-            hand-cut, and processed the way it should be — in Huntley, Illinois.
+            Ethically raised sheep, goats, and cattle, slaughtered the traditional
+            Halal way. Pasture-fed, hand-cut, and done the way it should be — in
+            Huntley, Illinois.
           </p>
           <div className="mt-5 flex gap-3">
             {[Instagram, Facebook].map((Icon, i) => (
@@ -81,7 +82,7 @@ export function Footer() {
         <div className="container flex flex-col items-center justify-between gap-2 text-xs text-bone-muted sm:flex-row">
           <p>© {new Date().getFullYear()} Ferdows Farm. All rights reserved.</p>
           <p className="eyebrow text-[0.65rem] text-gold">
-            Huntley, Illinois · Halal Certified
+            Huntley, Illinois · Done the Halal Way
           </p>
         </div>
       </div>

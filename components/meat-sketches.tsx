@@ -142,7 +142,7 @@ export function WaxStamp({ className }: IconProps) {
         style={{ fontSize: "13px", letterSpacing: "4px", fontWeight: 600 }}
       >
         <textPath href="#stamp-bottom" startOffset="50%" textAnchor="middle">
-          CERTIFIED · FERDOWS FARM
+          THE HALAL WAY · FERDOWS
         </textPath>
       </text>
       {/* center mark */}

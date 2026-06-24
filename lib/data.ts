@@ -76,7 +76,7 @@ export const LIVESTOCK: Animal[] = [
 
 export const HALAL_STANDARDS = [
   {
-    title: "Certified Halal Process",
+    title: "Traditional Halal Process",
     body: "Every animal is processed in strict accordance with Islamic Halal guidelines by trained, knowledgeable hands — start to finish.",
   },
   {
