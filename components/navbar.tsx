@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, MapPin, Clock } from "lucide-react";
 import { cn, SITE } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { BarnMark } from "@/components/barn-mark";
@@ -20,7 +20,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,91 +29,105 @@ export function Navbar() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 w-full px-3 pt-3 sm:px-4">
+    <header className="sticky top-0 z-50 w-full">
+      {/* top utility strip */}
+      <div className="hidden border-b border-bone/10 bg-coal-deep/0 bg-maroon-deep/40 md:block">
+        <div className="container flex h-9 items-center justify-between text-[0.7rem] font-medium tracking-wide text-bone-muted">
+          <span className="flex items-center gap-2">
+            <MapPin className="h-3.5 w-3.5 text-blood-soft" /> {SITE.address}
+          </span>
+          <span className="flex items-center gap-2">
+            <Clock className="h-3.5 w-3.5 text-blood-soft" /> Open Daily · 8 AM – 6 PM
+            <span className="mx-2 text-bone/20">|</span>
+            <span className="eyebrow text-[0.65rem] text-gold">Halal Certified</span>
+          </span>
+        </div>
+      </div>
+
+      {/* main bar */}
       <nav
         className={cn(
-          "container flex h-16 items-center justify-between rounded-full px-4 transition-all duration-300 sm:px-6",
+          "border-b transition-all duration-300",
           scrolled
-            ? "border border-meadow-dark/10 bg-cream/85 shadow-soft backdrop-blur-md"
-            : "border border-transparent bg-cream/40 backdrop-blur-sm"
+            ? "border-coal-line bg-coal/95 shadow-soft backdrop-blur-md"
+            : "border-transparent bg-coal/70 backdrop-blur-sm"
         )}
       >
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-meadow/15 text-meadow-dark transition-transform duration-500 group-hover:rotate-[18deg]">
-            <BarnMark className="h-6 w-6" />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-xl font-extrabold tracking-tight text-meadow-deep">
-              Ferdows Farm
+        <div className="container flex h-[4.5rem] items-center justify-between">
+          <Link href="/" className="group flex items-center gap-3">
+            <span className="grid h-11 w-11 place-items-center rounded-sm border border-blood/40 bg-blood/15 text-blood-soft transition-all duration-500 group-hover:bg-blood group-hover:text-bone">
+              <BarnMark className="h-7 w-7" />
             </span>
-            <span className="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-clay">
-              Halal · Huntley, IL
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-xl font-bold uppercase tracking-[0.14em] text-bone">
+                Ferdows <span className="text-blood-soft">Farm</span>
+              </span>
+              <span className="mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-bone-muted">
+                Halal Butchery · Huntley
+              </span>
             </span>
-          </span>
-        </Link>
+          </Link>
 
-        {/* desktop nav */}
-        <div className="hidden items-center gap-7 md:flex">
-          {LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "relative text-sm font-semibold tracking-tight transition-all hover:text-meadow-dark active:scale-95",
-                "after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:rounded-full after:bg-wheat after:transition-all after:duration-300",
-                pathname === l.href
-                  ? "text-meadow-dark after:w-full"
-                  : "text-ink-soft after:w-0 hover:after:w-full"
-              )}
+          {/* desktop nav */}
+          <div className="hidden items-center gap-8 lg:flex">
+            {LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "relative font-display text-sm font-semibold uppercase tracking-[0.12em] transition-colors active:scale-95",
+                  "after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:bg-blood after:transition-all after:duration-300",
+                  pathname === l.href
+                    ? "text-bone after:w-full"
+                    : "text-bone-muted hover:text-bone after:w-0 hover:after:w-full"
+                )}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Button asChild size="sm">
+              <Link href="/contact">
+                <Phone className="h-4 w-4" /> Book Now
+              </Link>
+            </Button>
+          </div>
+
+          {/* mobile controls */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <Button asChild size="icon" aria-label="Call Ferdows Farm">
+              <a href={SITE.phoneHref}>
+                <Phone className="h-4 w-4" />
+              </a>
+            </Button>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="grid h-11 w-11 place-items-center rounded-sm border border-bone/20 text-bone transition-colors hover:bg-coal-soft active:scale-95"
             >
-              {l.label}
-            </Link>
-          ))}
-          <Button asChild variant="default" size="sm">
-            <a href={SITE.phoneHref}>
-              <Phone className="h-4 w-4" />
-              {SITE.phone}
-            </a>
-          </Button>
-        </div>
-
-        {/* mobile controls */}
-        <div className="flex items-center gap-2 md:hidden">
-          <Button asChild size="icon" variant="default" aria-label="Call Ferdows Farm">
-            <a href={SITE.phoneHref}>
-              <Phone className="h-4 w-4" />
-            </a>
-          </Button>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="grid h-11 w-11 place-items-center rounded-full border-2 border-meadow-dark/20 text-meadow-dark transition-colors hover:bg-meadow-mist/50 active:scale-95"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* mobile drawer */}
       <div
         className={cn(
-          "container mt-2 overflow-hidden rounded-3xl transition-all duration-300 ease-out md:hidden",
-          open
-            ? "max-h-96 border border-meadow-dark/10 bg-cream/95 shadow-soft backdrop-blur-md"
-            : "max-h-0"
+          "overflow-hidden border-b border-coal-line bg-coal/98 backdrop-blur-md transition-all duration-300 ease-out lg:hidden",
+          open ? "max-h-96" : "max-h-0 border-b-transparent"
         )}
       >
-        <div className="flex flex-col gap-1 p-3">
+        <div className="container flex flex-col gap-1 py-3">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className={cn(
-                "rounded-2xl px-4 py-3 text-base font-semibold transition-colors",
+                "rounded-sm px-4 py-3 font-display text-base font-semibold uppercase tracking-wide transition-colors",
                 pathname === l.href
-                  ? "bg-meadow text-cream"
-                  : "text-ink hover:bg-meadow-mist/50"
+                  ? "bg-blood text-bone"
+                  : "text-bone-soft hover:bg-coal-soft"
               )}
             >
               {l.label}
@@ -121,7 +135,7 @@ export function Navbar() {
           ))}
           <a
             href={SITE.phoneHref}
-            className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-wheat px-4 py-3 text-base font-semibold text-ink"
+            className="mt-1 flex items-center justify-center gap-2 rounded-sm bg-gold px-4 py-3 font-display text-base font-semibold uppercase tracking-wide text-coal"
           >
             <Phone className="h-4 w-4" /> Call {SITE.phone}
           </a>

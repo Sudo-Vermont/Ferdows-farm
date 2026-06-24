@@ -4,25 +4,23 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full font-bold tracking-tight ring-offset-background transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.95] active:duration-75 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:transition-transform",
+  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-sm font-display text-sm font-semibold uppercase tracking-[0.12em] ring-offset-background transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-coal disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] active:duration-75 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:transition-transform",
   {
     variants: {
       variant: {
         default:
-          "bg-meadow text-meadow-deep shadow-soft hover:bg-wheat hover:shadow-glow",
-        leaf: "bg-meadow-deep text-cream shadow-soft hover:bg-clay-deep hover:shadow-lift",
-        wheat:
-          "bg-wheat text-meadow-deep shadow-soft hover:bg-wheat-soft hover:shadow-glow",
-        clay: "bg-clay text-cream shadow-soft hover:bg-clay-deep hover:shadow-lift",
+          "bg-blood text-bone shadow-soft hover:bg-blood-bright hover:shadow-glow",
+        gold: "bg-gold text-coal shadow-soft hover:bg-gold-soft",
+        bone: "bg-bone text-coal shadow-soft hover:bg-white",
         outline:
-          "border-2 border-clay/40 bg-transparent text-clay-deep hover:border-clay hover:bg-clay hover:text-cream",
-        ghost: "text-ink hover:bg-meadow-mist/60",
-        link: "text-clay-deep underline-offset-4 hover:underline",
+          "border-2 border-bone/25 bg-transparent text-bone hover:border-blood hover:bg-blood hover:text-bone",
+        ghost: "text-bone hover:bg-coal-soft",
+        link: "text-blood-soft underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-11 px-6 text-sm",
-        sm: "h-9 px-5 text-sm",
-        lg: "h-14 px-8 text-base",
+        default: "h-11 px-6",
+        sm: "h-9 px-5 text-xs",
+        lg: "h-14 px-9 text-base",
         icon: "h-11 w-11",
       },
     },

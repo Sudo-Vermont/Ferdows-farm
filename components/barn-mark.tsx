@@ -1,36 +1,26 @@
 export function BarnMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
-      {/* sun rays */}
-      <g
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        opacity="0.85"
-      >
-        <path d="M24 3v5" />
-        <path d="M24 40v5" />
-        <path d="M45 24h-5" />
-        <path d="M8 24H3" />
-        <path d="M38.9 9.1l-3.5 3.5" />
-        <path d="M12.6 35.4l-3.5 3.5" />
-        <path d="M38.9 38.9l-3.5-3.5" />
-        <path d="M12.6 12.6L9.1 9.1" />
-      </g>
-      {/* sun disc */}
-      <circle cx="24" cy="24" r="9.5" fill="currentColor" fillOpacity="0.92" />
-      {/* wheat stalk arcing across the sun */}
-      <g
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-        opacity="0.55"
-      >
-        <path d="M24 31c0-5 1.5-8 4.5-11" />
-        <path d="M27 24c-1.6-.4-2.8-1.6-3.2-3.2 1.6.4 2.8 1.6 3.2 3.2Z" />
-        <path d="M29 21c-1.6-.4-2.8-1.6-3.2-3.2 1.6.4 2.8 1.6 3.2 3.2Z" />
-      </g>
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      {/* horns */}
+      <path d="M12 17C8 12 3 11 3 11c0 4 2 8 6 9" />
+      <path d="M36 17c4-5 9-6 9-6 0 4-2 8-6 9" />
+      {/* head */}
+      <path d="M12 17c0-7 5-11 12-11s12 4 12 11c0 5-2 9-5 12-2 2-4 4-7 4s-5-2-7-4c-3-3-5-7-5-12Z" />
+      {/* ears */}
+      <path d="M12 18c-3-1-5 0-6 2M36 18c3-1 5 0 6 2" />
+      {/* eyes + snout */}
+      <path d="M19 22h.01M29 22h.01" />
+      <path d="M21 31c2 1.5 4 1.5 6 0" />
+      <path d="M20 27h8" opacity="0.5" />
     </svg>
   );
 }

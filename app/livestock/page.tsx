@@ -14,32 +14,23 @@ export const metadata: Metadata = {
 
 function PageHeader() {
   return (
-    <section className="relative overflow-hidden bg-bone pt-12">
-      <div className="absolute -right-10 top-6 h-56 w-56 rounded-full bg-wheat/15 blur-3xl" />
-      <div className="container relative py-16 sm:py-20">
+    <section className="grain relative overflow-hidden bg-gradient-to-b from-maroon-deep to-coal pt-12">
+      <div className="absolute left-1/2 top-[-20%] h-72 w-72 -translate-x-1/2 rounded-full bg-blood/20 blur-3xl" />
+      <div className="container relative py-20 sm:py-24">
         <Reveal>
-          <span className="text-xs font-bold uppercase tracking-[0.24em] text-clay">
-            Our Livestock
-          </span>
-          <h1 className="mt-4 max-w-3xl font-display text-5xl font-extrabold leading-[1.02] text-meadow-deep sm:text-6xl text-balance">
-            Healthy animals, raised with honest care.
+          <p className="font-script text-3xl text-blood-soft">our livestock</p>
+          <h1 className="mt-1 max-w-3xl font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight text-bone sm:text-6xl">
+            Healthy animals,
+            <br />
+            <span className="text-blood-soft">raised with honest care</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-            Choose from pasture-raised sheep, goats, and cattle — plus
-            free-range farm-fresh eggs. Every animal is Halal-certified and
-            treated the way livestock deserves to be treated.
+          <p className="mt-6 max-w-2xl text-lg text-bone-muted">
+            Choose from pasture-raised sheep, goats, and cattle — plus free-range
+            farm-fresh eggs. Every animal is Halal-certified and treated the way
+            livestock deserves.
           </p>
         </Reveal>
       </div>
-      {/* hill divider */}
-      <svg
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        className="block h-10 w-full text-meadow-mist/40 sm:h-14"
-        aria-hidden="true"
-      >
-        <path d="M0,40 C360,5 720,75 1080,40 C1260,22 1360,52 1440,40 L1440,80 L0,80 Z" fill="currentColor" />
-      </svg>
     </section>
   );
 }
@@ -50,37 +41,41 @@ export default function LivestockPage() {
       <PageHeader />
 
       {/* LIVESTOCK DETAIL */}
-      <section className="bg-bone">
-        <div className="container space-y-8 py-16">
+      <section className="bg-coal">
+        <div className="container space-y-6 py-20">
           {LIVESTOCK.map((a, i) => (
             <Reveal key={a.slug} delay={(i % 2) * 80}>
               <div
                 id={a.slug}
-                className="grid scroll-mt-28 items-center gap-8 rounded-[2rem] border border-meadow-dark/10 bg-cream p-8 shadow-soft transition-shadow duration-300 hover:shadow-lift sm:p-10 md:grid-cols-[auto_1fr]"
+                className="grid scroll-mt-28 items-center gap-8 overflow-hidden rounded-lg border border-coal-line bg-coal-card transition-colors duration-300 hover:border-blood/40 md:grid-cols-[18rem_1fr]"
               >
-                <div className="h-40 w-full overflow-hidden rounded-[1.75rem] ring-1 ring-meadow-dark/10 md:h-36 md:w-44">
+                <div className="relative h-56 w-full overflow-hidden md:h-full">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={asset(a.image)}
                     alt={a.name}
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-coal-card/40 md:bg-gradient-to-l" />
+                  <span className="absolute left-4 top-4 rounded-sm bg-blood px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-bone">
+                    {a.bookable ? "Bookable" : "Call to buy"}
+                  </span>
                 </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-clay">
-                    {a.tagline}
-                  </p>
-                  <h2 className="mt-2 font-display text-3xl font-extrabold text-meadow-deep">
+                <div className="p-8 sm:p-10">
+                  <p className="eyebrow text-[0.65rem] text-gold">{a.tagline}</p>
+                  <h2 className="mt-2 font-display text-3xl font-bold uppercase text-bone">
                     {a.name}
                   </h2>
-                  <p className="mt-3 max-w-2xl text-ink-soft">{a.description}</p>
-                  <ul className="mt-5 grid gap-2 sm:grid-cols-3">
+                  <p className="mt-3 max-w-2xl leading-relaxed text-bone-muted">
+                    {a.description}
+                  </p>
+                  <ul className="mt-6 grid gap-2 sm:grid-cols-3">
                     {a.details.map((d) => (
                       <li
                         key={d}
-                        className="flex items-start gap-2 text-sm text-ink-soft"
+                        className="flex items-start gap-2 text-sm text-bone-soft"
                       >
-                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-meadow/15 text-meadow-dark">
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-sm bg-blood/15 text-blood-soft">
                           <Check className="h-3 w-3" />
                         </span>
                         {d}
@@ -95,33 +90,33 @@ export default function LivestockPage() {
       </section>
 
       {/* HALAL STANDARDS */}
-      <section className="relative overflow-hidden bg-meadow-deep text-cream">
-        <div className="absolute -left-16 top-10 h-64 w-64 rounded-full bg-meadow-light/15 blur-3xl" />
-        <div className="container relative py-24">
+      <section className="relative overflow-hidden border-y border-coal-line bg-coal-soft">
+        <div className="container py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-wheat/40 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-wheat-soft">
+            <span className="inline-flex items-center gap-2 rounded-sm border border-gold/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               <ShieldCheck className="h-4 w-4" /> Our Standards
             </span>
-            <h2 className="mt-5 max-w-2xl font-display text-4xl font-extrabold sm:text-5xl text-balance">
-              Strict Halal certification, no exceptions.
+            <h2 className="mt-5 max-w-2xl font-display text-4xl font-bold uppercase tracking-tight text-bone sm:text-5xl">
+              Strict Halal certification,{" "}
+              <span className="text-blood-soft">no exceptions</span>
             </h2>
-            <p className="mt-4 max-w-2xl text-cream/75">
-              Halal is more than a label to us — it&apos;s a responsibility we
-              take seriously at every step, from pasture to processing.
+            <p className="mt-4 max-w-2xl text-bone-muted">
+              Halal is more than a label to us — it&apos;s a responsibility we take
+              seriously at every step, from pasture to processing.
             </p>
           </Reveal>
 
           <div className="mt-14 grid gap-6 sm:grid-cols-2">
             {HALAL_STANDARDS.map((s, i) => (
               <Reveal key={s.title} delay={(i % 2) * 110}>
-                <div className="h-full rounded-[1.75rem] border border-cream/10 bg-cream/5 p-7 backdrop-blur-sm transition-colors hover:bg-cream/10">
-                  <span className="font-display text-4xl font-extrabold text-wheat-soft/50">
+                <div className="h-full rounded-lg border border-coal-line bg-coal-card p-8 transition-colors hover:border-blood/40">
+                  <span className="font-poster text-5xl text-blood/40">
                     0{i + 1}
                   </span>
-                  <h3 className="mt-2 font-display text-xl font-bold text-cream">
+                  <h3 className="mt-2 font-display text-xl font-bold uppercase text-bone">
                     {s.title}
                   </h3>
-                  <p className="mt-2 leading-relaxed text-cream/75">{s.body}</p>
+                  <p className="mt-2 leading-relaxed text-bone-muted">{s.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -130,23 +125,23 @@ export default function LivestockPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-bone">
+      <section className="bg-coal">
         <div className="container flex flex-col items-center gap-6 py-24 text-center">
           <Reveal className="flex flex-col items-center gap-6">
-            <h2 className="max-w-2xl font-display text-4xl font-extrabold text-meadow-deep sm:text-5xl text-balance">
+            <h2 className="max-w-2xl font-display text-4xl font-bold uppercase tracking-tight text-bone sm:text-5xl">
               Found what you&apos;re looking for?
             </h2>
-            <p className="max-w-xl text-lg text-ink-soft">
+            <p className="max-w-xl text-lg text-bone-muted">
               Call to check current availability and pricing, or book an on-site
               Halal slaughtering and we&apos;ll handle the rest.
             </p>
             <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" variant="wheat">
+              <Button asChild size="lg" variant="gold">
                 <a href={SITE.phoneHref}>
                   <Phone className="h-4 w-4" /> Call {SITE.phone}
                 </a>
               </Button>
-              <Button asChild variant="default" size="lg">
+              <Button asChild size="lg">
                 <Link href="/contact">
                   Book a Slaughtering <ArrowRight className="h-4 w-4" />
                 </Link>

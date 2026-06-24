@@ -1,18 +1,32 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { Oswald, Anton, Caveat, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/page-transition";
 
-const display = Outfit({
+const display = Oswald({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const body = Plus_Jakarta_Sans({
+const poster = Anton({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poster",
+  weight: "400",
+});
+
+const script = Caveat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-script",
+  weight: ["500", "600", "700"],
+});
+
+const body = Hanken_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
@@ -46,7 +60,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${poster.variable} ${script.variable} ${body.variable}`}
+    >
       <body className="flex min-h-screen flex-col">
         <Navbar />
         <main className="flex-1">
