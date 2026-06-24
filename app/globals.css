@@ -4,30 +4,30 @@
 
 @layer base {
   :root {
-    /* shadcn tokens mapped to the Fresh Pasture palette (HSL) */
-    --background: 42 56% 96%; /* bone */
-    --foreground: 100 9% 16%; /* ink */
+    /* shadcn tokens mapped to the Golden Harvest palette (HSL) */
+    --background: 38 100% 96%; /* bone (warm cream) */
+    --foreground: 24 45% 16%; /* ink (warm brown) */
 
-    --card: 45 100% 99%; /* cream */
-    --card-foreground: 100 9% 16%;
+    --card: 40 100% 98%; /* cream */
+    --card-foreground: 24 45% 16%;
 
-    --primary: 105 22% 46%; /* meadow */
-    --primary-foreground: 45 100% 99%;
+    --primary: 33 81% 55%; /* amber */
+    --primary-foreground: 22 60% 18%; /* roasted brown */
 
-    --secondary: 130 19% 30%; /* meadow dark */
-    --secondary-foreground: 45 100% 99%;
+    --secondary: 22 64% 18%; /* roasted brown */
+    --secondary-foreground: 40 100% 98%;
 
-    --muted: 42 40% 88%;
-    --muted-foreground: 100 6% 40%;
+    --muted: 38 60% 90%;
+    --muted-foreground: 28 18% 42%;
 
-    --accent: 37 72% 55%; /* wheat */
-    --accent-foreground: 100 12% 14%;
+    --accent: 40 87% 60%; /* honey */
+    --accent-foreground: 22 60% 18%;
 
-    --border: 95 16% 82%;
-    --input: 95 16% 82%;
-    --ring: 105 22% 46%;
+    --border: 32 48% 84%;
+    --input: 32 48% 84%;
+    --ring: 33 81% 55%;
 
-    --radius: 1.25rem;
+    --radius: 1.5rem;
   }
 
   * {
@@ -40,11 +40,11 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    /* warm sunrise atmosphere + faint pasture mesh */
+    /* golden-hour atmosphere: honey glow + peach wash + terracotta floor */
     background-image:
-      radial-gradient(70% 50% at 80% -8%, rgba(251, 217, 166, 0.6), transparent 60%),
-      radial-gradient(60% 45% at 5% 0%, rgba(201, 216, 190, 0.5), transparent 55%),
-      radial-gradient(50% 40% at 100% 100%, rgba(143, 176, 126, 0.18), transparent 60%);
+      radial-gradient(70% 50% at 82% -8%, rgba(248, 206, 112, 0.6), transparent 60%),
+      radial-gradient(60% 45% at 0% 0%, rgba(251, 217, 166, 0.55), transparent 55%),
+      radial-gradient(55% 45% at 100% 100%, rgba(199, 93, 58, 0.14), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -54,8 +54,8 @@
   }
 
   ::selection {
-    background: #6b8f5e;
-    color: #fffdf8;
+    background: #e8932e;
+    color: #4a2410;
   }
 }
 
@@ -108,19 +108,16 @@
     100% { opacity: 1; transform: scale(1); }
   }
 
-  /* ── Wheat / grass blade (animated) ── */
-  .blade {
-    transform-origin: bottom center;
-    animation: blade-sway 4s ease-in-out infinite;
-  }
-  @keyframes blade-sway {
-    0%, 100% { transform: rotate(-6deg); }
-    50% { transform: rotate(6deg); }
+  /* ── Sticker stamp (chunky offset badge) ── */
+  .sticker {
+    box-shadow:
+      0 5px 0 0 rgba(74, 36, 16, 0.16),
+      0 16px 30px -10px rgba(74, 36, 16, 0.38);
   }
 
   /* ── Animated gradient text (sunrise sheen) ── */
   .text-sunrise {
-    background: linear-gradient(100deg, #c9852a, #e0a23b, #f2c879, #c96a3f, #e0a23b);
+    background: linear-gradient(100deg, #d99a24, #f2b441, #f8ce70, #e8932e, #c75d3a, #f2b441);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -152,7 +149,7 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* ── Dotted/curved section dividers ── */
+  /* ── Section edge fade ── */
   .edge-top-fade {
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%);
     mask-image: linear-gradient(to bottom, transparent, #000 14%);
@@ -160,10 +157,11 @@
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; }
-    .animate-page-in, .animate-pop, .blade, .text-sunrise,
+    .animate-page-in, .animate-pop, .text-sunrise,
     .marquee-track, .animate-bob, .animate-sway, .animate-drift-slow,
     .animate-drift-med, .animate-rise-sun, .animate-spin-slow,
-    .animate-kenburns {
+    .animate-kenburns, .animate-sun-glow, .animate-float,
+    .animate-float-slow, .animate-bounce-in, .animate-wiggle {
       animation: none !important;
     }
   }

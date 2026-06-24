@@ -6,9 +6,8 @@ import {
   MapPin,
   ArrowRight,
   Phone,
-  Sparkles,
+  Sun,
   Wheat,
-  Tractor,
 } from "lucide-react";
 import { HillsHero } from "@/components/hills-hero";
 import { Reveal } from "@/components/reveal";
@@ -59,10 +58,10 @@ export default function HomePage() {
         <div className="marquee-track gap-8">
           {[...MARQUEE, ...MARQUEE].map((word, i) => (
             <span key={i} className="flex items-center gap-8 whitespace-nowrap">
-              <span className="font-display text-lg font-semibold tracking-tight sm:text-2xl">
+              <span className="font-display text-lg font-bold tracking-tight sm:text-2xl">
                 {word}
               </span>
-              <Sparkles className="h-4 w-4 text-wheat-soft" />
+              <Sun className="h-4 w-4 animate-spin-slow text-wheat-soft" />
             </span>
           ))}
         </div>
@@ -126,6 +125,12 @@ export default function HomePage() {
             <div className="relative mx-auto max-w-md">
               <div className="absolute -inset-4 -rotate-3 rounded-[2.5rem] bg-wheat/20" />
               <div className="absolute -inset-2 rotate-2 rounded-[2.5rem] bg-meadow/15" />
+              {/* floating sun sticker */}
+              <span className="sticker absolute -right-4 -top-5 z-20 grid h-20 w-20 -rotate-6 animate-float place-items-center rounded-full bg-wheat text-center font-display text-[0.62rem] font-extrabold uppercase leading-tight text-meadow-deep">
+                Family
+                <br />
+                Owned
+              </span>
               <div className="relative overflow-hidden rounded-[2.5rem] bg-meadow-deep p-9 text-cream shadow-lift">
                 <Wheat className="h-12 w-12 text-wheat-soft" />
                 <p className="mt-4 font-display text-2xl font-bold text-wheat-soft">
@@ -206,8 +211,9 @@ export default function HomePage() {
         <div className="absolute -bottom-20 -left-10 h-72 w-72 rounded-full bg-meadow-light/15 blur-3xl" />
         <div className="container relative flex flex-col items-center gap-6 py-24 text-center">
           <Reveal className="flex flex-col items-center gap-6">
-            <span className="grid h-16 w-16 animate-bob place-items-center rounded-full bg-cream/10 text-wheat-soft">
-              <Tractor className="h-8 w-8" />
+            <span className="relative grid h-16 w-16 place-items-center rounded-full bg-cream/10 text-wheat-soft">
+              <span className="absolute inset-0 animate-sun-glow rounded-full bg-wheat/40 blur-md" />
+              <Sun className="relative h-8 w-8 animate-spin-slow" />
             </span>
             <h2 className="max-w-2xl font-display text-4xl font-extrabold leading-tight sm:text-5xl text-balance">
               Ready to place an order or pay us a visit?
