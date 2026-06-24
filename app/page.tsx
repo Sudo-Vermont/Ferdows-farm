@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   Leaf,
-  Package,
   Moon,
   ArrowRight,
   Phone,
@@ -17,8 +16,7 @@ import { LIVESTOCK, HALAL_STANDARDS } from "@/lib/data";
 import { Cleaver, WaxStamp } from "@/components/meat-sketches";
 
 const FEATURES = [
-  { Comp: Leaf, label: "Only Organic Nutrition" },
-  { Comp: Package, label: "Vacuum-Sealed Packaging" },
+  { Comp: Leaf, label: "Grass-Fed, No Hormones" },
   { Comp: Moon, label: "Done the Halal Way" },
   { Comp: Cleaver, label: "Professional Halal Cutting" },
 ];
@@ -46,7 +44,7 @@ export default function HomePage() {
 
       {/* ── RED FEATURE BAND ── */}
       <section className="relative z-10 bg-blood">
-        <div className="container grid grid-cols-2 gap-px lg:grid-cols-4">
+        <div className="container grid grid-cols-1 gap-px sm:grid-cols-3">
           {FEATURES.map(({ Comp, label }) => (
             <div
               key={label}

@@ -15,14 +15,10 @@ export const LIVESTOCK: Animal[] = [
   {
     slug: "sheep",
     name: "Sheep & Lambs",
-    tagline: "Tender, pasture-raised, milk-fed",
+    tagline: "Tender, grass-fed, pasture-raised",
     description:
       "Grass-fed lambs and mature sheep raised on open pasture. Ideal for Aqiqah, Eid celebrations, and everyday family meals.",
-    details: [
-      "Spring & milk-fed lambs available",
-      "Hand-selected for weight & health",
-      "Raised without growth hormones",
-    ],
+    details: ["Grass-fed on open pasture", "No added growth hormones"],
     emoji: "🐑",
     image: "/images/sheep.jpg",
     bookable: true,
@@ -33,11 +29,7 @@ export const LIVESTOCK: Animal[] = [
     tagline: "Lean, flavorful, free-range",
     description:
       "Healthy free-range goats of various sizes. A favorite for traditional dishes, celebrations, and Halal home cooking.",
-    details: [
-      "Young to full-grown sizes",
-      "Open-range, grain-finished",
-      "Selected the morning of pickup",
-    ],
+    details: ["Grass-fed on open pasture", "No added growth hormones"],
     emoji: "🐐",
     image: "/images/goat.jpg",
     bookable: true,
@@ -48,11 +40,7 @@ export const LIVESTOCK: Animal[] = [
     tagline: "Robust, grass-fed beef cattle",
     description:
       "Well-cared-for cattle for whole, half, or share purchases. Perfect for families, gatherings, and Qurbani.",
-    details: [
-      "Whole, half & quarter shares",
-      "Grass-fed, pasture-raised",
-      "Custom cut to your request",
-    ],
+    details: ["Grass-fed on open pasture", "No added growth hormones"],
     emoji: "🐄",
     image: "/images/cow.jpg",
     bookable: true,
@@ -63,11 +51,7 @@ export const LIVESTOCK: Animal[] = [
     tagline: "Free-range, collected daily",
     description:
       "Free-range chicken eggs gathered fresh each morning from hens that roam clean, open pasture. Rich golden yolks you can taste the difference in.",
-    details: [
-      "Free-range, pasture-raised hens",
-      "Collected fresh every morning",
-      "Sold by the dozen — call to reserve",
-    ],
+    details: ["Free-range, pasture-raised hens", "No added hormones"],
     emoji: "🥚",
     image: "/images/hen.jpg",
     bookable: false,
