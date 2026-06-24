@@ -37,6 +37,8 @@ export const metadata: Metadata = {
     default: "Ferdows Farm — Halal Sheep, Goats & Cattle | Huntley, IL",
     template: "%s | Ferdows Farm",
   },
+  // Don't leak full page URLs to third parties (Google Maps, Formsubmit).
+  referrer: "strict-origin-when-cross-origin",
   description:
     "Ferdows Farm in Huntley, IL raises ethical, pasture-fed sheep, goats, and cattle, slaughtered the traditional Halal way. Farm-to-table livestock you can trust. Call (702) 354-7434.",
   keywords: [
